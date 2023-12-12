@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Editar Contacto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #mensaje {
+            color: #ff0000; /* Cambia el color según tus preferencias */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Editar contacto</h1>
+
+    <form>
+        <label for="correo_actual">Correo de Contacto a Editar:</label>
+        <input type="email" id="correo_actual" placeholder="name@email.com">
+
+        <label for="nombre">Nuevo Nombre:</label>
+        <input type="text" id="nombre" placeholder="Nuevo nombre">
+
+        <label for="telefono">Nuevo Teléfono:</label>
+        <input type="tel" id="telefono" placeholder="Nuevo teléfono">
+
+        <div id="mensaje"></div>
+
+        <button onclick="editarContacto()">Guardar Cambios</button>
+        <button onclick="cancelarEdicion()">Cancelar</button>
+    </form>
+
+    <button onclick="regresar()">Regresar al Índice</button>
+
+    <script type="text/javascript" src="../static/js/get_editar.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Contactos</title>
+    <script type="text/javascript" src="../static/js/get_ver.js"></script>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #4CAF50; /* Verde */
+            color: #fff;
+            padding: 15px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50; /* Verde */
+            color: #fff;
+        }
+
+        #detalle_contacto {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #4CAF50; /* Verde */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease; /* Efecto de transición en el cambio de color */
+        }
+
+        button:hover {
+            background-color: #f44336; /* Rojo */
+        }
+        
+    </style>
+</head>
+<body onload="verContactos()"> 
+    <h1>Lista de contactos</h1>
+
+    <table border="1" id="table_contactos">
+        <thead id="thead_contactos">
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Acciones</th> <!-- Agregamos una nueva columna para acciones -->
+        </thead>
+        <tbody id="tbody_contactos">
+        </tbody>
+    </table>
+
+    <div id="detalle_contacto" style="display: none;">
+        <h2>Detalle de Contacto</h2>
+        <p id="detalle_email"></p>
+        <p id="detalle_nombre"></p>
+        <p id="detalle_telefono"></p>
+        <button onclick="regresarDesdeDetalle()">Regresar a la Lista de Contactos</button>
+    </div>
+
+    <button onclick="regresarDesdeLista()">Regresar al Índice</button>
+</body>
+</html>
