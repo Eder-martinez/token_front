@@ -4,7 +4,7 @@ function editarContacto() {
     const nuevoNombre = document.getElementById('nombre').value;
     const nuevoTelefono = document.getElementById('telefono').value;
 
-    const URL = "http://localhost:8000/contactos/" + correoActual; 
+    const URL = "https://back-token.onrender.com/contactos" + correoActual; 
     
     fetch(URL, {
         method: 'PUT',
