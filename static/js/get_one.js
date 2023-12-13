@@ -1,7 +1,6 @@
 function getOne(email) {
-    //var email="john@eamil.com"
-    const URL = "http://127.0.0.1:8000/contactos";
-    //const URL = "ttps://shm-backend-105ae4e301e9.herokuapp.com/contactos";
+    const URL = "https://back-token.onrender.com/contactos/";  // Agrega el email a la URL
+    //const URL = "https://miapi-1416df5a6c82.herokuapp.com/contactos";
     var request = new XMLHttpRequest;
     request.open('GET',URL +"/" +email,true);
     request.send();
