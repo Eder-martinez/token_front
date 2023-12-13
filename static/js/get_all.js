@@ -1,40 +1,39 @@
-function getAll(){
-    const URL = "back-token.onrender.com/contactos";
-    //const URL = "ttps://shm-backend-105ae4e301e9.herokuapp.com/contactos";
-    var request = new XMLHttpRequest;
-    request.open('GET',URL);
+function getAll() {
+    const URL = "https://back-token.onrender.com/contactos"; // Cambiado a HTTPS
+    var request = new XMLHttpRequest();
+    request.open('GET', URL);
     request.send();
 
     request.onload = (e) => {
-        const response = request.responseText;
-        const json = JSON.parse(response);
-        console.log("response: " + response);
-        console.log("json: " + json);
-        console.log("status_code: " + request.status);
+        if (request.status === 200) {
+            const response = request.responseText;
+            const json = JSON.parse(response);
+            console.log("response: " + response);
+            console.log("json: " + JSON.stringify(json)); // Cambiado a JSON.stringify para evitar problemas en la consola
 
-        console.log("Email: " + json[0]["email"]);
-        console.log("Nombre: " + json[0]["nombre"]);
-        console.log("Telefono: " + json[0]["telefono"]);
+            const tbody_contactos = document.getElementById("tbody_contactos");
+            tbody_contactos.innerHTML = ""; // Limpiamos la tabla antes de agregar nuevos elementos
 
-        const tbody_contactos = document.getElementById("tbody_contactos");
-        for (var i = 0; i < Object.keys(json).length; i++) {
-            var tr = document.createElement("tr");
-            var td_email = document.createElement("td");
-            var td_nombre = document.createElement("td");
-            var td_telefono = document.createElement("td");
+            for (var i = 0; i < Object.keys(json).length; i++) {
+                var tr = document.createElement("tr");
+                var td_email = document.createElement("td");
+                var td_nombre = document.createElement("td");
+                var td_telefono = document.createElement("td");
 
-            td_email.innerHTML = json[i]["email"];
-            td_nombre.innerHTML = json[i]["nombre"];
-            td_telefono.innerHTML = json[i]["telefono"];
+                td_email.innerHTML = json[i]["email"];
+                td_nombre.innerHTML = json[i]["nombre"];
+                td_telefono.innerHTML = json[i]["telefono"];
 
-            console.log("Email: " + json[i]["email"]);
-
-            tr.appendChild(td_email);
-            tr.appendChild(td_nombre);
-            tr.appendChild(td_telefono);
-            tbody_contactos.appendChild(tr);
+                tr.appendChild(td_email);
+                tr.appendChild(td_nombre);
+                tr.appendChild(td_telefono);
+                tbody_contactos.appendChild(tr);
+            }
+        } else {
+            console.error("Error al obtener datos del servidor. Código de estado: " + request.status);
         }
-
-
     };
-};
+}
+
+// Llamamos a getAll al cargar la página
+document.body.onload = getAll;
