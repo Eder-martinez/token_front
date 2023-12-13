@@ -1,6 +1,6 @@
 function borrarContacto() {
     const email = document.getElementById('email').value;
-    const URL = "http://localhost:8000/contactos/" + email;
+    const URL = "https://contactos-front.onrender.com/contactos" + email;
 
     var request = new XMLHttpRequest();
     request.open('DELETE', URL, true);
@@ -25,9 +25,3 @@ function regresar() {
     // Redirige al index.html
     window.location.href = "/";
 }
-
-
-
-
-
-
