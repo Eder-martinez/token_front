@@ -36,4 +36,4 @@ function getAll() {
 }
 
 // Llamamos a getAll al cargar la página
-document.body.onload = getAll;
+document.body.onload = getAll();
