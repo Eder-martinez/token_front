@@ -1,39 +1,62 @@
+document.addEventListener('DOMContentLoaded', function () {
+    getAll();
+});
+
 function getAll() {
-    const URL = "https://back-token.onrender.com/contactos"; // Cambiado a HTTPS
-    var request = new XMLHttpRequest();
-    request.open('GET', URL);
-    request.send();
-
-    request.onload = (e) => {
-        if (request.status === 200) {
-            const response = request.responseText;
-            const json = JSON.parse(response);
-            console.log("response: " + response);
-            console.log("json: " + JSON.stringify(json)); // Cambiado a JSON.stringify para evitar problemas en la consola
-
+    fetch('http://localhost:8000/contactos')
+        .then(response => response.json())
+        .then(data => {
             const tbody_contactos = document.getElementById("tbody_contactos");
-            tbody_contactos.innerHTML = ""; // Limpiamos la tabla antes de agregar nuevos elementos
+            tbody_contactos.innerHTML = "";
 
-            for (var i = 0; i < Object.keys(json).length; i++) {
-                var tr = document.createElement("tr");
-                var td_email = document.createElement("td");
-                var td_nombre = document.createElement("td");
-                var td_telefono = document.createElement("td");
-
-                td_email.innerHTML = json[i]["email"];
-                td_nombre.innerHTML = json[i]["nombre"];
-                td_telefono.innerHTML = json[i]["telefono"];
-
-                tr.appendChild(td_email);
-                tr.appendChild(td_nombre);
-                tr.appendChild(td_telefono);
+            data.forEach(contacto => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${contacto.email}</td>
+                    <td>${contacto.nombre}</td>
+                    <td>${contacto.telefono}</td>
+                    <td><button onclick="eliminarContacto('${contacto.email}')">Eliminar</button></td>
+                `;
                 tbody_contactos.appendChild(tr);
-            }
-        } else {
-            console.error("Error al obtener datos del servidor. Código de estado: " + request.status);
-        }
-    };
+            });
+        })
+        .catch(error => console.error('Error:', error));
 }
 
-// Llamamos a getAll al cargar la página
-document.body.onload = getAll();
+function insertarContacto() {
+    const email = document.getElementById("email").value;
+    const nombre = document.getElementById("nombre").value;
+    const telefono = document.getElementById("telefono").value;
+
+    const nuevoContacto = {
+        email: email,
+        nombre: nombre,
+        telefono: telefono
+    };
+
+    fetch('http://localhost:8000/contactos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nuevoContacto),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Contacto insertado:', data);
+            getAll();
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function eliminarContacto(email) {
+    fetch(`http://localhost:8000/contactos/${email}`, {
+        method: 'DELETE',
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Contacto eliminado:', data);
+            getAll();
+        })
+        .catch(error => console.error('Error:', error));
+}
