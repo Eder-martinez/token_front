@@ -1,5 +1,5 @@
 function getAll() {
-    const URL = "https://back-contactos.onrender.com/contactos";  // Ruta correcta del servidor FastAPI
+    const URL = "https://back-token.onrender.com/contactos";  // Ruta correcta del servidor FastAPI
     var request = new XMLHttpRequest();
     request.open('GET', URL);
     request.send();
