@@ -1,6 +1,6 @@
 function borrarContacto() {
     const email = document.getElementById('email').value;
-    const URL = "https://contactos-front.onrender.com/contactos" + email;
+    const URL = "https://back-token.onrender.com/contactos" + email;
 
     var request = new XMLHttpRequest();
     request.open('DELETE', URL, true);
