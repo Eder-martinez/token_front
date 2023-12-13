@@ -1,5 +1,5 @@
 function verContactos() {
-    const URL = "http://127.0.0.1:8000/contactos"; // Reemplaza con la URL correcta de tu servidor FastAPI
+    const URL = "https://back-token.onrender.com/contactos"; // Reemplaza con la URL correcta de tu servidor FastAPI
     var request = new XMLHttpRequest();
     request.open('GET', URL, true);
 
